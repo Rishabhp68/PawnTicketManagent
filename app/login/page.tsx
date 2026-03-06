@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-import { ShieldCheck } from "lucide-react";
+import { CreditCard, PhilippinePeso, ShieldCheck } from "lucide-react";
 import { ThemeToggle } from "@/components/app/theme-toggle";
 
 const schema = z.object({
@@ -76,55 +76,50 @@ export default function LoginPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-
-      {/* Background image */}
+      {/* Background image
       <div className="absolute inset-0 bg-[url('/bg-pattern.png')] bg-cover bg-center opacity-40" />
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/90 backdrop-blur-[2px]" />
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/90 backdrop-blur-[2px]" /> */}
 
       {/* Content */}
       <div className="relative z-10">
-
         {/* Header */}
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-          <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-primary-foreground shadow">
-              <ShieldCheck className="h-5 w-5" />
-            </div>
+        <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="flex h-16 items-center justify-between">
+              {/* LEFT */}
 
-            <div>
-              <div className="text-lg font-semibold tracking-tight">
-                Pawn Ticket Management
-              </div>
-              <div className="text-xs text-muted-foreground">
-                Blockchain backed pawn ticket lifecycle
+              <div className="flex items-center gap-8">
+                {/* BRAND */}
+
+                <div className="flex items-center gap-2">
+                  <PawnIcon />
+                  <span className="text-lg font-semibold tracking-tight">
+                    Pawn Ticket Management
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-
-          <ThemeToggle />
-        </div>
+        </header>
 
         {/* Main content */}
         <div className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-2 md:items-center">
-
           {/* HERO SECTION */}
           <div className="space-y-6">
-
             <h1 className="text-4xl font-bold leading-tight tracking-tight">
               Secure Pawn Ticket Platform
             </h1>
 
             <p className="text-muted-foreground max-w-md">
               Manage pawn tickets with full transparency and blockchain-backed
-              ownership. Officers manage issuance while customers track
-              renewals and redemption easily.
+              ownership. Officers manage issuance while customers track renewals
+              and redemption easily.
             </p>
 
             {/* Feature cards */}
             <div className="grid grid-cols-2 gap-4 pt-2">
-
               <Card className="bg-background/70 backdrop-blur-md border-border/40 shadow-lg">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm">
@@ -142,25 +137,22 @@ export default function LoginPage() {
 
               <Card className="bg-background/70 backdrop-blur-md border-border/40 shadow-lg">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm">
-                    On-chain ownership
-                  </CardTitle>
+                  <CardTitle className="text-sm">On-chain ownership</CardTitle>
                   <CardDescription className="text-xs">
                     ERC-1155 pawn ticket NFTs
                   </CardDescription>
                 </CardHeader>
 
                 <CardContent className="text-xs text-muted-foreground">
-                  Pawn tickets are tokenized and visible directly in your wallet.
+                  Pawn tickets are tokenized and visible directly in your
+                  wallet.
                 </CardContent>
               </Card>
-
             </div>
           </div>
 
           {/* LOGIN CARD */}
           <Card className="border-border/40 bg-background/80 backdrop-blur-xl shadow-2xl">
-
             <CardHeader className="space-y-2">
               <CardTitle className="text-xl font-semibold">
                 Account Sign In
@@ -172,7 +164,6 @@ export default function LoginPage() {
             </CardHeader>
 
             <CardContent>
-
               {error && (
                 <Alert variant="destructive" className="mb-4">
                   <AlertTitle>Sign in failed</AlertTitle>
@@ -184,7 +175,6 @@ export default function LoginPage() {
                 className="space-y-4"
                 onSubmit={form.handleSubmit(onSubmit)}
               >
-
                 <div className="grid gap-2">
                   <Label>Username</Label>
                   <Input
@@ -220,7 +210,6 @@ export default function LoginPage() {
                 >
                   {loading ? "Verifying..." : "Sign In"}
                 </Button>
-
               </form>
 
               <div className="mt-4 text-xs text-muted-foreground">
@@ -229,15 +218,36 @@ export default function LoginPage() {
                   getAccountDetails
                 </span>{" "}
                 and determines your role via{" "}
-                <span className="font-medium text-foreground">
-                  isInRole
-                </span>.
+                <span className="font-medium text-foreground">isInRole</span>.
               </div>
-
             </CardContent>
           </Card>
         </div>
       </div>
+    </div>
+  );
+}
+function PawnIcon() {
+  return (
+    <div className="relative h-14 w-14 flex items-center justify-center">
+      {/* Shield */}
+
+      <CreditCard
+        className="h-14 w-14 text-primary"
+        strokeWidth={1.5}
+        overflow="hidden"
+      />
+
+      {/* Ticket overlay */}
+
+      <PhilippinePeso
+        className="absolute bottom-3.5 right-3.5 h-7 w-7 
+        z-10
+        bg-background
+        pt-0
+        text-primary"
+        strokeWidth={1.5}
+      />
     </div>
   );
 }
